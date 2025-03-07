@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.gradle.test-retry' version '1.4.1'
+}
+
+group = 'org.interview.task'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.3'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.1'
+    implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.50.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testImplementation group: 'org.awaitility', name: 'awaitility', version: '4.3.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+    retry {
+        maxRetries = 1
+        maxFailures = 5
+        failOnPassedAfterRetry = false
+    }
+    reports {
+        junitXml {
+            mergeReruns = true
+        }
+    }
+}
