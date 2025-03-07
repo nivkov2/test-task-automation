@@ -1,4 +1,4 @@
-# Platform API functional tests #
+# API and UI tests #
 
 ## Prerequisites ##
 
