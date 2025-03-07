@@ -13,7 +13,6 @@ Ensure you have the following installed:
 
 Run all tests (localhost):
 
-
 ```bash
 ./gradlew clean test
 ```
